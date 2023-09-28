@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "e10f0c5b-ccc1-4a5d-98eb-8717ea8a2cb6",
+		"name": "lms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23784031"
+	},
+	"item": [
+		{
+			"name": "librarian",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"3esa\",\r\n    \"yearPublished\": 200880,\r\n    \"quantity\": 11112,\r\n    \"libraryItemType\": \"BOOK\",\r\n    \"author\": \"Au112222222222222221\",\r\n    \"available\": true,\r\n    \"borrows\": [],\r\n    \"library\": { \r\n        \"id\": \"d901995e-72ad-444d-8100-5ae6a653ddb9\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/library-item",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"library-item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"3esa\",\r\n    \"yearPublished\": 200880,\r\n    \"quantity\": 11112,\r\n    \"libraryItemType\": \"JOURNAL\",\r\n    \"borrows\": [],\r\n    \"available\": true,\r\n    \"author\": \"helllllllooo1\",\r\n    \"library\": {\r\n        \"id\": \"d901995e-72ad-444d-8100-5ae6a653ddb9\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/library-item/f76a3be7-a60f-4941-9b5a-f91310606e45",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"library-item",
+								"f76a3be7-a60f-4941-9b5a-f91310606e45"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/library-item/cc34c286-8e4a-459b-80f8-f58f8e583a13",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"library-item",
+								"cc34c286-8e4a-459b-80f8-f58f8e583a13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-quantity-for-library-item",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/library-item/a7025e32-f02d-431b-93a0-f441365f481b/add-quantity?quantityToAdd=222",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"library-item",
+								"a7025e32-f02d-431b-93a0-f441365f481b",
+								"add-quantity"
+							],
+							"query": [
+								{
+									"key": "quantityToAdd",
+									"value": "222"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "borrow",
+			"item": [
+				{
+					"name": "borrow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"libraryItemId\": \"59e3563d-38ff-4527-81cd-da0922d04195\",\r\n    \"borrowerId\": \"7372d442-2d0e-4974-8af0-266628480079\" \r\n    // the borrower could be student or collegeEmployee or librarian.\r\n    // can be fetched from database.\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/borrow",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"borrow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "return",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"libraryItemId\": \"e87c2f3f-458a-4df5-9e72-aecdb4fe0c71\",\r\n    \"borrowerId\": \"de440e52-f33a-4c97-8c14-bab08da89839\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/return",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"return"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-borrowed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/borrowed?borrowerId=7372d442-2d0e-4974-8af0-266628480079",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"borrowed"
+							],
+							"query": [
+								{
+									"key": "borrowerId",
+									"value": "7372d442-2d0e-4974-8af0-266628480079"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "availability",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/availability?libraryItemId=e87c2f3f-458a-4df5-9e72-aecdb4fe0c71&borrowerId=de440e52-f33a-4c97-8c14-bab08da89839",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "libraryItemId",
+									"value": "e87c2f3f-458a-4df5-9e72-aecdb4fe0c71"
+								},
+								{
+									"key": "borrowerId",
+									"value": "de440e52-f33a-4c97-8c14-bab08da89839"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "enumerate",
+			"item": [
+				{
+					"name": "get-all-by-type",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/enumerate/type?lit=BOOK",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"enumerate",
+								"type"
+							],
+							"query": [
+								{
+									"key": "lit",
+									"value": "BOOK"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-available",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/enumerate/type/available?lit={{LIBRARY_ITEM_TYPE_BOOK}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"enumerate",
+								"type",
+								"available"
+							],
+							"query": [
+								{
+									"key": "lit",
+									"value": "{{LIBRARY_ITEM_TYPE_BOOK}}",
+									"description": "Library item type"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{BASE_PATH}}/enumerate/{{LIBRARY_ITEM_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{BASE_PATH}}",
+								"enumerate",
+								"{{LIBRARY_ITEM_ID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
