@@ -16,6 +16,10 @@ a simple spring boot app that manages borrowing and returning books and journals
 
 6) "  docker run -p 8080:8080 libray-management-system-0.0.1:spring-docker .  "
 
+# Swagger URL 
+
+http://localhost:8080/libray-management-system/api/v1/swagger-ui/index.html#/
+
 # DATABASE 
 
 URL : http://localhost:8080/libray-management-system/api/v1/h2-console
@@ -33,7 +37,7 @@ there is no password
 
 postman has 3 folders :
 
-1) librarian : for librarian usage
+1) librarian : for the librarian to handle library-items
 
 2) enumerate : for fetching data
 
