@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 @Component
@@ -28,11 +29,11 @@ public class DataInitializer {
     public void initData() {
 
 
-        college.setAddress("3esa district");
-        college.setName("3esa");
+        college.setAddress("sahrawi street-zarqa");
+        college.setName("hashemite university");
 
-        library.setAddress("3esa jam3a");
-        library.setName("3esa library");
+        library.setAddress(college.getName());
+        library.setName(college.getName() + " library");
         library.setCollege(college);
 
         List<Student> students = new ArrayList<>();
@@ -48,12 +49,8 @@ public class DataInitializer {
         List<LibraryItem> libraryItems = new ArrayList<>();
         libraryItems = initLibraryItems(libraryItems);
 
-
         library.setLibrarians(librarians);
         library.setLibraryItems(libraryItems);
-
-        college.setAddress("3esa district");
-        college.setName("3esa");
         college.setStudents(students);
         college.setCollegeEmployees(collegeEmployees);
         college.setLibrary(library);
@@ -64,15 +61,19 @@ public class DataInitializer {
 
 
     public List<CollegeEmployee> initCollegeEmployees(List<CollegeEmployee> collegeEmployees) {
+
+        String[] names = {"ashraf", "khaled", "ronaldo", "ameen", "mousa"};
+        String[] departments = {"accounting", "Health Sciences", "Business Administration", "Environmental Science", "Fine Arts"};
+
         IntStream.range(0, 5).forEach(i -> {
             CollegeEmployee collegeEmployee = new CollegeEmployee();
 
-            collegeEmployee.setName("Employee " + (i + 1));
-            collegeEmployee.setDepartment("dep " + (i + 1));
-            collegeEmployee.setEmployeeType("Type " + (i + 1));
+            collegeEmployee.setName(names[i]);
+            collegeEmployee.setDepartment(departments[i]);
+            collegeEmployee.setEmployeeType("Prof " + (i + 1));
             collegeEmployee.setDateOfBirth(new Date());
-            collegeEmployee.setEmail("employee" + (i + 1) + "@example.com");
-            collegeEmployee.setPhoneNumber("123456789" + i);
+            collegeEmployee.setEmail(names[i] + "@hu.com");
+            collegeEmployee.setPhoneNumber("079345678" + i);
             collegeEmployee.setCollege(college);
 
             collegeEmployees.add(collegeEmployee);
@@ -81,14 +82,18 @@ public class DataInitializer {
     }
 
     public List<Student> initStudents(List<Student> students) {
+
+        String[] names = {"feras", "rami", "omar", "ali", "hussam"};
+        String[] majors = {"Computer Science", "Biology", "History", "Mathematics", "Psychology"};
+
         IntStream.range(0, 5).forEach(i -> {
             Student student = new Student();
 
             student.setDateOfBirth(new Date());
-            student.setEmail("student" + (i + 1) + "@example.com");
+            student.setEmail(names[i] + "@hu.com");
             student.setPhoneNumber("123456789" + i);
-            student.setMajor("Major " + (i + 1)); // Set the major
-            student.setName("stud" + 1);
+            student.setMajor(majors[i]);
+            student.setName(names[i]);
             student.setCollege(college);
 
             students.add(student);
@@ -97,13 +102,16 @@ public class DataInitializer {
     }
 
     public List<Librarian> initLibrarians(List<Librarian> librarians) {
+
+        String[] names = {"ameer", "abdullah", "ayman", "osama", "zakarya"};
+
         IntStream.range(0, 5).forEach(i -> {
             Librarian librarian = new Librarian();
-            librarian.setEmployeeType("Type " + (i + 1));
+            librarian.setEmployeeType("librarian");
             librarian.setDateOfBirth(new Date());
-            librarian.setEmail("librarian" + (i + 1) + "@example.com");
+            librarian.setEmail(names[i] + "@hu.com");
             librarian.setPhoneNumber("123456789" + i);
-            librarian.setName("libr" + 1);
+            librarian.setName(names[i]);
             librarian.setLibrary(library);
             librarian.setCollege(college);
 
@@ -114,15 +122,20 @@ public class DataInitializer {
 
 
     private List<LibraryItem> initLibraryItems(List<LibraryItem> libraryItems) {
+
+        String[] authors = {"J.K. Rowling", "George Orwell", "Harper Lee", "J.R.R. Tolkien", "Agatha Christie"};
+        String[] titles = {"Harry Potter and the Sorcerer's Stone", "1984", "To Kill a Mockingbird", "The Hobbit", "Murder on the Orient Express"};
+
+        Random random = new Random();
         IntStream.range(0, 5).forEach(i -> {
             LibraryItem libraryItem = new LibraryItem();
 
             libraryItem.setAvailable(true);
-            libraryItem.setAuthor("Author " + (i + 1)); // Set the Author
-            libraryItem.setYearPublished(2000 + i); // Set the yearPublished
+            libraryItem.setAuthor(authors[i]);
+            libraryItem.setYearPublished(1950 + random.nextInt(50));
             libraryItem.setLibraryItemType(LibraryItemType.BOOK);
-            libraryItem.setName("Book " + (i + 1)); // Set the name
-            libraryItem.setQuantity(12);
+            libraryItem.setName(titles[i]);
+            libraryItem.setQuantity(10 + random.nextInt(20));
 
             libraryItem.setLibrary(library);
 
